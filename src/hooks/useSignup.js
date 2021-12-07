@@ -3,8 +3,8 @@ import { projectAuth } from '../config/config'
 
 
 export const useSignup = () => {
-    const [error, setError] = useState(null)
-    const [isloading, setIsloading] = useState(false)
+    const [eate(null)
+    const [isloading, setrror, setError] = useStIsloading] = useState(false)
 
     const signup = async (email, password, displayName) => {
         setError(null)

@@ -9,7 +9,7 @@ export default function Signup() {
     const [password, setPassword] = useState("")
     const [displayName, setDisplayName] = useState("")
 
-    const {error, isloading, signup} = useSignup()
+    const { error, isloading, signup } = useSignup()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -55,7 +55,7 @@ export default function Signup() {
             {
                 !isloading && <button className="btn">Signup</button>
             }
-            
+
         </form>
     )
 }
