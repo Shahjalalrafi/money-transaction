@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { projectAuth } from '../config/config'
+import { useAuthContext } from './useAuthContext'
 
 
 export const useSignup = () => {
-    const [eate(null)
-    const [isloading, setrror, setError] = useStIsloading] = useState(false)
-
+    const [error, setError] = useState(null)
+    const [isloading, setIsloading] = useState(false)
+    const {dispatch } = useAuthContext()
+ 
     const signup = async (email, password, displayName) => {
         setError(null)
         setIsloading(true)
@@ -19,6 +21,8 @@ export const useSignup = () => {
             }
 
             await res.user.updateProfile({ displayName })
+            dispatch({type: "LOGIN", payload: res.user})
+
             setError(null)
             setIsloading(false)
         }
