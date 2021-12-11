@@ -11,11 +11,18 @@ export default function Signup() {
 
     const { error, isloading, signup } = useSignup()
 
+    const reset = () => {
+        setEmail('')
+        setPassword('')
+        setDisplayName('')
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
         signup(email, password, displayName)
         console.log(email, password, displayName)
+        reset()
     }
 
     return (
