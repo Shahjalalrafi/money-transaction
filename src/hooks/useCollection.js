@@ -26,6 +26,6 @@ export const useCollection = (collection) => {
         return () => unSubscribe()
     }, [collection])
 
-    return {error, }
+    return {error,document }
 
 }
