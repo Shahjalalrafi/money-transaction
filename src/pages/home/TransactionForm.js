@@ -50,6 +50,12 @@ export default function TransactionForm({uid}) {
                         value={amount}
                     />
                 </label>
+                {
+                    response.isLoading && <p  style={{color: "white"}}>uploading...</p>
+                }
+                {
+                    response.error && <p style={{color: "white"}}>{response.error}</p>
+                }
                 <button>Add Transaction</button>
             </form>
         </>
