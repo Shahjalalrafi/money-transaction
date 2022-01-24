@@ -8,12 +8,15 @@ import TransactionForm from './TransactionForm'
 import TransactionList from './TransactionList'
 
 export default function Home() {
-    const {user} = useAuthContext()
-    const {error, document} = useCollection("transactions")
+    const { user } = useAuthContext()
+    const { error, document } = useCollection(
+        "transactions",
+        ["uid", "==", user.uid]
+    )
     return (
         <div className={classes.container}>
             <div className={classes.content}>
-                <TransactionList transactions = {document} />
+                <TransactionList transactions={document} />
             </div>
             <div className={classes.sidebar}>
                 <TransactionForm uid={user.uid} />

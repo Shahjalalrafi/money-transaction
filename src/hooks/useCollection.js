@@ -1,12 +1,18 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { projectFirestore } from "../config/config"
 
-export const useCollection = (collection) => {
+export const useCollection = (collection, _query) => {
     const [error, setError] = useState(null)
     const [document, setDocument] = useState([])
 
+    const query = useRef(_query).current
+
     useEffect(() => {
-        const ref = projectFirestore.collection(collection)
+        let ref = projectFirestore.collection(collection)
+
+        if(query) {
+            ref = ref.where(...query)
+        }
 
         const unSubscribe = ref.onSnapshot((shapshot) => {
             let result = []
@@ -24,7 +30,7 @@ export const useCollection = (collection) => {
         })
 
         return () => unSubscribe()
-    }, [collection])
+    }, [collection, query])
 
     return {error,document }
 
