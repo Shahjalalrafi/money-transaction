@@ -11,7 +11,9 @@ export default function Home() {
     const { user } = useAuthContext()
     const { error, document } = useCollection(
         "transactions",
-        ["uid", "==", user.uid]
+        ["uid", "==", user.uid],
+        // for oder by assending or descending
+        // ["createdAt", "desc"]
     )
     return (
         <div className={classes.container}>

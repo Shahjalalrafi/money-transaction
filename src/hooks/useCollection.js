@@ -1,18 +1,25 @@
 import { useEffect, useRef, useState } from "react"
 import { projectFirestore } from "../config/config"
 
-export const useCollection = (collection, _query) => {
+export const useCollection = (collection, _query, _orderBy) => {
     const [error, setError] = useState(null)
     const [document, setDocument] = useState([])
 
     const query = useRef(_query).current
-
+    // for oder by assending or descending
+    // const orderBy = useRef(_orderBy).current
+    
     useEffect(() => {
         let ref = projectFirestore.collection(collection)
 
         if(query) {
             ref = ref.where(...query)
         }
+        
+        // for oder by assending or descending
+        // if(orderBy) {
+        //     ref = ref.orderBy(...orderBy)
+        // }
 
         const unSubscribe = ref.onSnapshot((shapshot) => {
             let result = []
